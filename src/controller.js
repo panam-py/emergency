@@ -1,5 +1,5 @@
 const {Repo} = require('./repo')
-const {BadRequestError, ConflictError} = require('./exceptions')
+const {BadRequestError, ConflictError, UnauthorizedError} = require('./exceptions')
 const {Types} = require('mongoose')
 const {PanicService} = require('./service')
 const {hashPassword, comparePassword} = require('./utils')
