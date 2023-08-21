@@ -13,8 +13,10 @@ const panicService = new PanicService();
 class PanicController {
     async getPanics(req, res, next) {
         try {
-            const {limit, offset} = req.query;
-            const panics = await repo.getAllPanics(limit, offset);
+            const {limit, skip} = req.query;
+            const limitValue = limit ? Number(limit) : 20;
+            const offsetValue = skip ? Number(skip) : 0;
+            const panics = await repo.getAllPanics(limitValue, offsetValue);
             return res.status(200).json({status: "success", data: panics});
         } catch (err) {
             console.log(err);
@@ -49,8 +51,10 @@ class PanicController {
 
     async getPanicByAtrr(req, res, next) {
         try {
-            const {limit, offset} = req.query;
-            const panics = await panicService.getPanicByAttr({...req.query}, limit, offset);
+            const {limit, skip} = req.query;
+            const limitValue = limit ? Number(limit) : 20;
+            const offsetValue = skip ? Number(skip) : 0;
+            const panics = await panicService.getPanicByAttr({...req.query}, limitValue, offsetValue);
             return res.status(200).json({status: "success", data: panics});
         } catch(err) {
             console.log(err);
